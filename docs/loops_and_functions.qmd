@@ -1,0 +1,97 @@
+---
+title: "End of Day Activity"
+format: html
+editor: visual
+---
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+```{r}
+#task 1
+weekdays <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+transects <- c("Transect A", "Transect B","Transect C")
+
+out_matrix <- matrix(nrow = length(weekdays), ncol = length(transects))
+for(i in seq_along(weekdays)) {
+  for(j in seq_along(transects)) {
+    test <- paste0(weekdays[i], "-", transects[j])
+    out_matrix[i,j] <- test
+  }
+}
+```
+
+```{r}
+#Task 2
+force <- function(mass, accel) {
+  answer = mass * accel
+  print(paste0("The resulting force is ", answer, " Newtons."))
+}
+
+
+force(4, 3)
+```
+
+```{r}
+# task 3
+
+fish_parms <- data.frame(sci_name = c("Chanos chanos",
+                                      "Sphyraena barracuda",
+                                      "Caranx ignobilis"),
+                         common_name = c("Milkfish",
+                                         "Great barracuda",
+                                         "Giant trevally"),
+                         a_est = c(0.0905,
+                                   0.0181,
+                                   0.0353),
+                         b_est = c(2.52, 
+                                   3.27,
+                                   3.05))
+
+fish_weight <- function(fish_name, total_length) {
+  if(fish_name == "Milkfish") {
+    weight <- 0.0905 * total_length^2.52
+  } else if(fish_name == "Great barracuda") {
+    weight <- 0.0181 * total_length^3.27
+  } else if(fish_name == "Giant trevally") {
+    weight <- 0.0353* total_length^3.05
+  }
+  print(paste(weight, "grams"))
+}
+
+fish_weight("Milkfish", 500)
+```
+
+```{r}
+#Task 4
+wave_power <- function(height, period) {
+  return(0.5 * height^2 * period)
+}
+
+wave_power(8, 3)
+
+h_seq <- seq(from = 0, to = 3, by = 0.2)
+
+for(i in seq_along(h_seq)) {
+  print(wave_power(h_seq[i], 8))
+}
+```
+
+```{r}
+#Task 5
+
+wave_depth_power <- function(depth,height, period) {
+  if(depth <= 12) {
+   return(0.81 * height^2 * period)
+  } else if(depth > 12) {
+    return(0.5 * height^2 * period)
+  }
+}
+```
+
+
+
+
+
